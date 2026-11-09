@@ -183,3 +183,315 @@ a:focus-visible{outline:3px solid #d14367;outline-offset:4px}
 .galeria.g-capa-de-livro{display:flex!important;flex-direction:column!important;gap:24px}
 .galeria.g-capa-de-livro>div{grid-column:auto!important;width:100%!important;max-width:none!important}
 .galeria.g-capa-de-livro img{width:100%!important;height:auto!important;display:block;border-radius:12px}
+.carro{position:relative;max-width:760px;margin:0 auto}
+.carro-janela{overflow:hidden;border-radius:16px}
+.carro-trilho{display:flex;transition:transform .5s ease}
+.carro-slide{flex:0 0 100%;display:block}
+.carro-img{aspect-ratio:4/3;border-radius:16px;overflow:hidden;display:flex;align-items:flex-end;padding:24px;color:#fff}
+.carro-img img{width:100%;height:100%;object-fit:cover;object-position:center top;margin:-24px;padding:0}
+.carro-seta{position:absolute;top:40%;z-index:2;width:44px;height:44px;border:0;border-radius:50%;background:#fff;color:#6b0f33;font-size:26px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.carro-seta.esq{left:-22px}.carro-seta.dir{right:-22px}
+.carro-seta:focus-visible,.carro-pontos button:focus-visible{outline:3px solid #d14367;outline-offset:3px}
+.carro-pontos{display:flex;justify-content:center;gap:8px;margin-top:16px;flex-wrap:wrap}
+.carro-pontos button{width:10px;height:10px;border-radius:50%;border:0;background:#0003;cursor:pointer;padding:0}
+.carro-pontos button.on{background:#6b0f33}
+@media (max-width:640px){.carro-seta.esq{left:4px}.carro-seta.dir{right:4px}}
+@media (prefers-reduced-motion:reduce){.carro-trilho{transition:none}}
+/* ===== Carrossel de projetos (cards) ===== */
+.pc { position: relative; }
+
+.pc-seta {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 2.75rem; height: 2.75rem; border-radius: 50%;
+  border: 2px solid #2b0a17; background: #fff; color: #2b0a17;
+  font-size: 1.5rem; line-height: 1; cursor: pointer;
+  display: grid; place-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.pc-seta:hover { background: #f3e4ea; }
+.pc-seta-esq { left: -1.375rem; }
+.pc-seta-dir { right: -1.375rem; }
+.pc-seta:focus-visible,
+.pc-card:focus-visible { outline: 3px solid #6b0f33; outline-offset: 3px; }
+
+.pc-trilho {
+  display: flex; gap: 1rem; list-style: none; margin: 0;
+  padding: 0.25rem 0 1rem; overflow-x: auto;
+  scroll-snap-type: x mandatory; scrollbar-width: none;
+}
+.pc-trilho::-webkit-scrollbar { display: none; }
+
+.pc-item { flex: 0 0 calc((100% - 2rem) / 3); scroll-snap-align: start; }
+@media (min-width: 900px) {
+  .pc-item { flex-basis: calc((100% - 3rem) / 4); }
+}
+
+.pc-card {
+  display: flex; flex-direction: column; height: 100%;
+  padding: 10px; border-radius: 14px; text-decoration: none;
+  transition: transform 0.2s ease;
+}
+.pc-card:hover { transform: translateY(-4px); }
+.pc-img {
+  display: block; aspect-ratio: 3 / 4; background: #fff;
+  border-radius: 10px; overflow: hidden;
+}
+.pc-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pc-titulo {
+  color: #fff; text-align: center; font-family: 'Playfair Display', serif;
+  font-weight: 700; font-size: 0.85rem; padding: 0.7rem 0.2rem 0.3rem;
+  overflow-wrap: anywhere;
+}
+@media (min-width: 600px) { .pc-titulo { font-size: 1rem; } }
+
+@media (max-width: 700px) {
+  .pc-seta { width: 2.25rem; height: 2.25rem; font-size: 1.2rem; }
+  .pc-seta-esq { left: -0.5rem; }
+  .pc-seta-dir { right: -0.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-card { transition: none; }
+  .pc-card:hover { transform: none; }
+}/* ===== Celulares com carrosséis (tela estilo Instagram) ===== */
+.cel-secao { padding: 4rem 0; }
+.cel-rotulo {
+  margin: 0.25rem 0 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: #d14367;
+}
+.cel-grade {
+  display: grid;
+  gap: 2rem 1.25rem;
+  margin-top: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+}
+@media (min-width: 1000px) {
+  .cel-grade { grid-template-columns: repeat(4, 1fr); }
+}
+
+.cel { width: 100%; max-width: 300px; }
+.cel-corpo {
+  container-type: inline-size;
+  position: relative;
+  aspect-ratio: 9 / 19;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #141414;
+  border: 8px solid #141414;
+  border-radius: 12% / 5.6%;
+  box-shadow: 0 18px 40px rgba(43, 10, 23, 0.25);
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+.cel-ilha {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28cqw;
+  height: 7cqw;
+  background: #141414;
+  border-radius: 999px;
+  z-index: 4;
+}
+
+.ig-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3.5cqw 9cqw 0;
+  height: 11cqw;
+  font-size: 3.6cqw;
+  font-weight: 700;
+}
+.ig-status svg { height: 3.6cqw; width: auto; }
+
+.ig-topo {
+  display: flex;
+  align-items: center;
+  gap: 4cqw;
+  padding: 2cqw 4cqw;
+  font-size: 4.6cqw;
+}
+.ig-topo strong { font-weight: 700; }
+.ig-ico { width: 6cqw; height: 6cqw; flex: none; }
+
+.ig-perfil {
+  display: flex;
+  align-items: center;
+  gap: 2.5cqw;
+  padding: 1.5cqw 3cqw 2cqw;
+}
+.ig-avatar {
+  width: 8.5cqw;
+  height: 8.5cqw;
+  border-radius: 50%;
+  flex: none;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, #d14367, #6b0f33);
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 4.4cqw;
+}
+.ig-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ig-nome {
+  font-weight: 700;
+  font-size: 3.8cqw;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ig-menu { width: 5.5cqw; height: 5.5cqw; }
+
+.cel-tela { flex: none; }
+.cel-tela:focus-visible { outline: 3px solid #6b0f33; outline-offset: -3px; }
+.cel-janela {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #f3e4ea;
+}
+.cel-faixa {
+  display: block;
+  height: 100%;
+  max-width: none;
+  transition: transform 0.35s ease, opacity 0.2s ease;
+}
+.ig-contador {
+  position: absolute;
+  top: 2.5cqw;
+  right: 2.5cqw;
+  z-index: 2;
+  background: rgba(20, 20, 20, 0.75);
+  color: #fff;
+  padding: 0.8cqw 2.6cqw;
+  border-radius: 999px;
+  font-size: 3cqw;
+  font-weight: 600;
+}
+
+.cel-seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 8cqw;
+  height: 8cqw;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.92);
+  color: #2b0a17;
+  font-size: 5cqw;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.cel-seta:disabled { opacity: 0; pointer-events: none; }
+.cel-seta:focus-visible,
+.cel-bolinhas button:focus-visible { outline: 3px solid #6b0f33; outline-offset: 2px; }
+.cel-esq { left: 2cqw; }
+.cel-dir { right: 2cqw; }
+
+.cel-bolinhas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.4cqw;
+  padding: 3cqw 4cqw 1cqw;
+}
+.cel-bolinhas button {
+  width: 1.8cqw;
+  height: 1.8cqw;
+  min-width: 6px;
+  min-height: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #c7c7cc;
+  cursor: pointer;
+}
+.cel-bolinhas button.on { background: #3d5afe; }
+
+.ig-acoes {
+  display: flex;
+  align-items: center;
+  gap: 4cqw;
+  padding: 2cqw 4cqw;
+}
+.ig-acoes .ig-ico { width: 6.5cqw; height: 6.5cqw; }
+.ig-salvar { margin-left: auto; }
+
+.ig-home {
+  position: absolute;
+  bottom: 2cqw;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32cqw;
+  height: 1.2cqw;
+  border-radius: 999px;
+  background: #141414;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cel-faixa { transition: none; }
+}
+.pc-vazio {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: #6b0f33;
+  background: #f3e4ea;
+}
+.pc-canvas,
+.pc-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: linear-gradient(180deg, #f7eef1, #ecd3dc);
+}
+.pc-trilho { scroll-snap-type: x proximity; }
+
+.pc-seta {
+  padding: 0;
+  line-height: 0;
+  display: grid;
+  place-items: center;
+}
+.pc-seta svg {
+  width: 55%;
+  height: 55%;
+  display: block;
+}
+.pc-janela {
+  overflow: hidden;
+  padding: 6px 0 0;
+}
+.pc-trilho {
+  overflow: visible;
+  scroll-snap-type: none;
+  padding-bottom: 1rem;
+  will-change: transform;
+}

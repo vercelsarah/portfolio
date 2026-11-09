@@ -2,6 +2,8 @@ import Link from "next/link";
 import { projetos } from "@/lib/projetos";
 import Reveal from "@/components/Reveal";
 import { getArquivos } from "@/lib/arquivos";
+import ProjetosCarrossel from "@/components/ProjetosCarrossel";
+import CarrosselCelular from "@/components/CarrosselCelular";
 
 const servicos = [
   { t: "Identidade visual", d: "Logotipo, paleta, tipografia e padrões que dão rosto à sua marca." },
@@ -47,32 +49,30 @@ export default function Home() {
         <section id="projetos">
           <div className="wrap">
             <h2 className="titulo-secao">Projetos</h2>
-            <div className="grade">
-              {projetos.map((p, i) => {
+            <ProjetosCarrossel
+              itens={projetos.map((p) => {
                 const a = getArquivos(p.slug);
-const capa = a.imagens[0];
-const vid = a.videos[0];
-const pdf = a.pdfs[0];
-                return (
-                  <Reveal key={p.slug} delay={(i % 3) * 80}>
-                    <Link href={`/projetos/${p.slug}`} className="card">
-                      <div className="capa" style={{ background: p.cor }}>
-                        {capa ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={capa.url} alt={`Capa do projeto ${p.titulo}`} loading="lazy" />
-                        ) : vid ? (
-                          <video src={vid.url + "#t=0.5"} preload="metadata" muted playsInline aria-hidden />
-                        ) : pdf ? (
-                          <iframe src={pdf.url + "#toolbar=0&navpanes=0&view=FitH"} title={`Prévia de ${p.titulo}`} tabIndex={-1} />
-                        ) : p.titulo}
-                      </div>
-                      <small>{p.categoria}</small>
-                      <h3>{p.titulo} <span aria-hidden>→</span></h3>
-                      <p>{p.resumo}</p>
-                    </Link>
-                  </Reveal>
-                );
+                return {
+                  slug: p.slug,
+                  titulo: p.titulo,
+                  categoria: p.categoria,
+                  cor: p.cor,
+                  capa: a.imagens[0]?.url ?? null,
+                  capaPdf: a.pdfs[0]?.url ?? null,
+                  capaVideo: a.videos[0]?.url ?? null,
+                };
               })}
+            />
+          </div>
+        </section>
+      <section className="cel-secao" aria-labelledby="titulo-carrosseis">
+          <div className="wrap">
+            <h2 className="titulo-secao" id="titulo-carrosseis">Design de Conteúdo</h2>
+            <p className="cel-rotulo">Carrosséis</p>
+            <div className="cel-grade">
+              {getArquivos("carrosseis").imagens.map((img, n) => (
+                <CarrosselCelular key={img.url} src={img.url} alt={`Carrossel ${n + 1}`} />
+              ))}
             </div>
           </div>
         </section>
